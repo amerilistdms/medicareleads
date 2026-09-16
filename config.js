@@ -1,20 +1,18 @@
 /**
- * Lead delivery. Fill form123 when you have a 123FormBuilder form ready.
+ * Lead delivery. After domain approval, fill form123 only.
  *
- * Netlify Forms (already wired): submissions land in Netlify → Forms →
- * medicare-leads, and can email the team. Works as soon as this site is
- * deployed on Netlify. Does not work on localhost.
- *
- * 123FormBuilder: you cannot dump a custom quiz into 123FB from the browser
- * without a Form ID + field control IDs. Create a form with contact fields
- * plus hidden/text fields for the quiz answers, then paste IDs below.
- * Submissions then appear in the same 123FB inbox as your other forms.
+ * 123FormBuilder: create a form with contact fields plus hidden/text
+ * fields for the quiz answers, then paste IDs below. Submissions then
+ * appear in the same 123FB inbox as your other forms.
  *
  * How to get IDs:
  * 1. Publish → Share form. The URL looks like
  *    https://form.123formbuilder.com/201140/...  → id is 201140
  * 2. Open the live form, Inspect a field, copy its name="control########"
  * 3. Paste those names into controls below (include the "control" prefix)
+ *
+ * Netlify Forms is left as a fallback if this ever runs on Netlify.
+ * It does not fire on Vercel.
  */
 window.LEAD_CONFIG = {
   netlifyFormName: "medicare-leads",
