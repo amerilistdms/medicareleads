@@ -13,6 +13,24 @@
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+
+    const toggle = header.querySelector(".nav-toggle");
+    const nav = header.querySelector(".header-nav");
+    if (!toggle || !nav) return;
+    const setOpen = (open) => {
+      header.classList.toggle("nav-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      document.body.classList.toggle("nav-lock", open);
+    };
+    toggle.addEventListener("click", () => setOpen(!header.classList.contains("nav-open")));
+    nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 1100) setOpen(false);
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") setOpen(false);
+    });
   }
 
   function reveal(selector, { trigger, y = 20, stagger = 0.08, start = "top 80%" } = {}) {

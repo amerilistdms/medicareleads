@@ -13,7 +13,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   margin: 0;
   font-family: var(--font);
@@ -21,7 +21,9 @@ body {
   background: var(--white);
   line-height: 1.55;
   font-optical-sizing: auto;
+  overflow-x: hidden;
 }
+body.nav-lock { overflow: hidden; }
 img { max-width: 100%; display: block; }
 button, input, textarea, select { font-family: inherit; }
 a { color: inherit; }
@@ -29,8 +31,11 @@ a { color: inherit; }
 .site-header {
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;
   gap: 28px;
   padding: 16px 40px;
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
   background: #fff;
   border-bottom: 1px solid var(--line);
   position: sticky;
@@ -51,6 +56,7 @@ a { color: inherit; }
   font-size: 22px;
   color: var(--navy);
   letter-spacing: -0.03em;
+  flex: none;
 }
 .brand-text {
   display: flex;
@@ -106,7 +112,9 @@ a { color: inherit; }
   display: flex;
   align-items: center;
   gap: 18px;
+  flex: none;
 }
+.header-actions .btn { white-space: nowrap; }
 .header-phone {
   text-decoration: none;
   font-weight: 700;
@@ -115,6 +123,47 @@ a { color: inherit; }
   transition: color 0.2s ease;
 }
 .header-phone:hover { color: var(--teal-dark); }
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  flex: none;
+}
+.nav-toggle span,
+.nav-toggle span::before,
+.nav-toggle span::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--navy);
+  border-radius: 2px;
+  position: absolute;
+  left: 12px;
+  transition: transform 0.2s ease, opacity 0.2s ease, top 0.2s ease;
+}
+.nav-toggle span { top: 21px; }
+.nav-toggle span::before {
+  content: "";
+  top: -6px;
+}
+.nav-toggle span::after {
+  content: "";
+  top: 6px;
+}
+.site-header.nav-open .nav-toggle span { background: transparent; }
+.site-header.nav-open .nav-toggle span::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+.site-header.nav-open .nav-toggle span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
 
 [hidden] { display: none !important; }
 .btn {
@@ -153,6 +202,7 @@ a { color: inherit; }
   color: #fff;
   overflow: hidden;
 }
+.hero > * { min-width: 0; }
 .hero-copy {
   padding: 72px 56px;
   display: flex;
@@ -200,7 +250,7 @@ a { color: inherit; }
 }
 .eyebrow.dark { color: var(--teal-dark); }
 .hero h1 {
-  font-size: clamp(40px, 5vw, 58px);
+  font-size: clamp(32px, 5vw, 58px);
   line-height: 1.08;
   margin: 0 0 20px;
   letter-spacing: 0.01em;
@@ -330,7 +380,8 @@ a { color: inherit; }
   border-radius: 999px;
 }
 .sample-table-wrap {
-  overflow: visible;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .sample-table {
   width: 100%;
@@ -911,11 +962,12 @@ a { color: inherit; }
   z-index: 1;
 }
 .faq-hero h1 {
-  font-size: clamp(40px, 5vw, 58px);
+  font-size: clamp(32px, 5vw, 58px);
   line-height: 1.08;
   margin: 0;
   letter-spacing: 0.01em;
   font-weight: 700;
+  text-wrap: balance;
 }
 .faq-hero-photo {
   position: relative;
@@ -975,9 +1027,10 @@ a { color: inherit; }
   cursor: pointer;
   font-weight: 700;
   color: var(--navy);
-  padding: 18px 28px 18px 0;
+  padding: 18px 36px 18px 0;
   list-style: none;
   position: relative;
+  overflow-wrap: break-word;
 }
 .faq-list summary::-webkit-details-marker { display: none; }
 .faq-list summary::after {
@@ -1174,71 +1227,45 @@ a { color: inherit; }
   top: 12px;
 }
 
-@media (max-width: 960px) {
-  .header-nav { display: none; }
-  .header-actions .btn { display: none; }
-  .hero, .why, .builder-shell, .audience-grid, .campaigns-panel, .campaign-services, .how-steps, .row-2, .card-grid, .stats, .qty-grid, .builder-top, .quiz-layout {
-    grid-template-columns: 1fr;
+@media (max-width: 1100px) {
+  .nav-toggle { display: grid; place-items: center; }
+  .header-nav {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin: 0;
+    padding: 8px 16px 16px;
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 18px 40px rgba(18, 52, 77, 0.12);
   }
-  .audience-card { position: static; }
-  .hero-copy { padding: 48px 24px; max-width: none; }
-  .hero-photo { min-height: 280px; }
-  .hero-photo img, .why-photo img { min-height: 280px; height: 280px; }
-  .faq-hero { grid-template-columns: 1fr; }
-  .faq-hero-copy { padding: 48px 24px; max-width: none; }
-  .faq-hero-photo { min-height: 200px; }
-  .faq-hero-photo img { min-height: 200px; height: 200px; }
-  .faq-hero-photo::after {
-    background: linear-gradient(
-      180deg,
-      var(--navy) 0%,
-      rgba(18, 52, 77, 0.55) 32%,
-      transparent 78%
-    );
+  .site-header.nav-open .header-nav { display: flex; }
+  .header-nav a {
+    padding: 14px 8px;
+    border-bottom: 1px solid var(--line);
   }
-  .faq-page .faq { margin-top: -24px; }
-  .audience-grid {
-    grid-template-areas:
-      "tall"
-      "tint"
-      "photo"
-      "channels";
-  }
-  .aud-tall { min-height: 280px; }
-  .campaigns-visual img { min-height: 240px; height: 240px; }
-  .campaigns-copy { padding: 28px 22px; }
-  .campaign-service-end { width: 100%; }
+  .header-nav a:last-child { border-bottom: 0; }
+  .header-nav a::after { display: none; }
+  .site-header { gap: 16px; padding: 12px 20px; }
+  .brand-logo { height: 42px; }
+  .how-steps { grid-template-columns: repeat(3, 1fr); }
+  .how-line { display: none; }
   .audiences-title span,
   .compare .section-head h2,
   .compare .section-head p {
     white-space: normal;
   }
-  .footer-bar, .footer-actions, .footer-legal {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .stats { margin: 0 16px; }
-  .stats div { border-right: 0; border-bottom: 1px solid var(--line); }
-  .site-header { padding: 12px 16px; }
-  .header-phone { display: none; }
-  .cart { position: static; }
-  .builder-top { align-items: stretch; }
-  .step-title { font-size: 26px; }
-  .answer-grid, .result-board { grid-template-columns: 1fr; }
-  .quiz-nav .btn { min-width: 0; width: 100%; }
-  .how-line { display: none; }
-  .sample-table {
-    min-width: 0;
-  }
-  .sample-table thead {
-    display: none;
-  }
-  .sample-table tbody tr {
-    display: block;
-  }
-  .sample-table tbody .sample-num {
-    display: none;
-  }
+  .sample-table { min-width: 0; }
+  .sample-table thead { display: none; }
+  .sample-table tbody tr { display: block; }
+  .sample-table tbody .sample-num { display: none; }
   .sample-table th,
   .sample-table td {
     display: flex;
@@ -1258,6 +1285,143 @@ a { color: inherit; }
     text-transform: uppercase;
     color: var(--muted);
   }
+}
+
+@media (max-width: 960px) {
+  .hero, .why, .builder-shell, .audience-grid, .campaigns-panel, .row-2, .card-grid, .stats, .qty-grid, .quiz-layout {
+    grid-template-columns: 1fr;
+  }
+  .audience-card { position: static; max-height: none; }
+  .hero { min-height: 0; }
+  .hero-copy {
+    padding: 48px 24px;
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: max(24px, env(safe-area-inset-right));
+    max-width: none;
+  }
+  .hero-photo { min-height: 280px; }
+  .hero-photo img, .why-photo img { min-height: 280px; height: 280px; }
+  .hero-photo::after,
+  .faq-hero-photo::after {
+    background: linear-gradient(
+      180deg,
+      var(--navy) 0%,
+      rgba(18, 52, 77, 0.55) 32%,
+      transparent 78%
+    );
+  }
+  .faq-hero { grid-template-columns: 1fr; min-height: 0; }
+  .faq-hero-copy {
+    padding: 48px 24px;
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: max(24px, env(safe-area-inset-right));
+    max-width: none;
+  }
+  .faq-hero-photo { min-height: 200px; }
+  .faq-hero-photo img { min-height: 200px; height: 200px; }
+  .faq-page .faq { margin-top: -24px; }
+  .why { gap: 28px; padding: 56px 20px; }
+  .why-copy h2,
+  .section-head h2,
+  .builder-top h2 {
+    font-size: clamp(26px, 7vw, 34px);
+  }
+  .audience-grid {
+    grid-template-areas:
+      "tall"
+      "tint"
+      "photo"
+      "channels";
+  }
+  .aud-tall { min-height: 280px; }
+  .campaigns { padding: 48px 16px; }
+  .campaigns-visual img { min-height: 240px; height: 240px; }
+  .campaigns-copy { padding: 28px 22px; }
+  .campaign-service-end { width: 100%; }
+  .footer-bar, .footer-actions, .footer-legal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-legal nav { gap: 12px 16px; }
+  .stats { margin: 0 16px; }
+  .stats div { border-right: 0; border-bottom: 1px solid var(--line); }
+  .header-phone { display: none; }
+  .cart { position: static; }
+  .builder-top {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .builder-main { padding: 24px 18px; }
+  .step-title { font-size: 26px; }
+  .answer-grid, .result-board { grid-template-columns: 1fr; }
+  .quiz-nav .btn { min-width: 0; width: 100%; }
+  .quiz-frame { padding: 20px 16px 120px; }
+  .quiz-dock {
+    flex-wrap: wrap;
+    position: sticky;
+    bottom: 0;
+  }
+  .quiz-dock .btn { min-width: 0; width: 100%; }
+  .sample-toolbar { flex-wrap: wrap; }
+}
+
+@media (max-width: 640px) {
+  .how-steps { grid-template-columns: repeat(2, 1fr); }
+  .campaign-services { grid-template-columns: 1fr; }
+  .quiz-age { grid-template-columns: 1fr; }
+  .hero-copy { padding: 36px 18px 32px; }
+  .hero-photo, .hero-photo img { min-height: 220px; height: 220px; }
+  .lede { font-size: 16px; }
+  .stats { margin: 0 12px; }
+  .stats div { padding: 20px 18px; }
+  .how, .audiences, .compare { padding-left: 16px; padding-right: 16px; }
+  .sample { padding: 48px 12px 64px; }
+  .quiz { padding: 40px 12px 100px; }
+  .field input[type="text"],
+  .field input[type="email"],
+  .field input[type="tel"],
+  .field input[type="number"],
+  .field textarea,
+  .quiz-age input,
+  .quiz-note-field,
+  .quiz-text-field,
+  .quiz-search input {
+    font-size: 16px;
+  }
+  .quiz-search {
+    flex-wrap: wrap;
+    padding: 8px;
+  }
+  .quiz-search .btn {
+    width: 100%;
+    min-width: 0;
+  }
+  .beat-count { font-size: 40px; }
+  .site-footer { padding: 28px 16px 20px; }
+  .footer-bar { padding: 22px 18px; border-radius: 18px; }
+  .faq-list details { padding: 0 16px; }
+}
+
+@media (max-width: 480px) {
+  .site-header {
+    gap: 8px;
+    padding: 10px 12px;
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+  }
+  .brand-logo { height: 32px; }
+  .header-actions { gap: 6px; }
+  .header-actions .btn {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+  .nav-toggle { width: 40px; height: 40px; }
+  .hero h1,
+  .faq-hero h1 {
+    font-size: clamp(28px, 8.5vw, 36px);
+  }
+  .how-steps { grid-template-columns: 1fr; }
+  .how-steps p { max-width: none; }
 }
 
 .quiz {
@@ -1294,6 +1458,7 @@ a { color: inherit; }
   gap: 20px;
   align-items: start;
 }
+.quiz-main { min-width: 0; }
 .audience-card {
   background: #fff;
   border-radius: 16px;
@@ -1559,6 +1724,7 @@ a { color: inherit; }
   max-width: none;
   margin: 28px 0 0;
   padding: 14px 16px;
+  padding-bottom: max(14px, env(safe-area-inset-bottom));
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -1741,12 +1907,39 @@ a { color: inherit; }
 
 @media (max-width: 960px) {
   .answer-grid, .result-board { grid-template-columns: 1fr; }
-  .how-line { display: none; }
+  .quiz-layout { grid-template-columns: 1fr; }
+  .audience-card { position: static; max-height: none; }
   .quiz-frame { padding: 20px 16px 120px; }
   .quiz-dock {
     flex-wrap: wrap;
     position: sticky;
-    bottom: 8px;
+    bottom: 0;
+    padding-bottom: max(14px, env(safe-area-inset-bottom));
   }
   .quiz-dock .btn { min-width: 0; width: 100%; }
+}
+
+@media (max-width: 640px) {
+  .quiz { padding: 40px 12px 100px; }
+  .quiz-age { grid-template-columns: 1fr; }
+  .field input[type="text"],
+  .field input[type="email"],
+  .field input[type="tel"],
+  .field input[type="number"],
+  .field textarea,
+  .quiz-age input,
+  .quiz-note-field,
+  .quiz-text-field,
+  .quiz-search input {
+    font-size: 16px;
+  }
+  .quiz-search {
+    flex-wrap: wrap;
+    padding: 8px;
+  }
+  .quiz-search .btn {
+    width: 100%;
+    min-width: 0;
+  }
+  .beat-count { font-size: 40px; }
 }
