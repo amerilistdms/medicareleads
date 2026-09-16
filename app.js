@@ -1,6 +1,6 @@
 const motionOk = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const canGsap = () => typeof gsap !== "undefined" && motionOk;
-const LEADS = window.LEAD_CONFIG || { netlifyFormName: "medicare-leads", form123: {} };
+const LEADS = window.LEAD_CONFIG || { leadEndpoint: "/api/lead" };
 
 const STEPS = ["Audience", "Market", "Targeting", "Marketing", "Quantity", "Campaign"];
 const KEYS = "ABCDEFGHIJK".split("");
@@ -688,42 +688,14 @@ function leadPayload() {
   };
 }
 
-async function submitNetlify(payload) {
-  const name = LEADS.netlifyFormName || "medicare-leads";
-  const res = await fetch("/", {
+async function submitLead(payload) {
+  const endpoint = LEADS.leadEndpoint || "/api/lead";
+  const res = await fetch(endpoint, {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({ "form-name": name, ...payload }),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
   });
-  if (!res.ok) throw new Error(`Netlify form ${res.status}`);
-}
-
-function submit123(payload) {
-  const cfg = LEADS.form123 || {};
-  const controls = cfg.controls || {};
-  if (!cfg.id || !Object.values(controls).some(Boolean)) return;
-  const form = document.createElement("form");
-  form.method = "POST";
-  form.action = cfg.action || "https://form.123formbuilder.com/sf.php";
-  form.target = "form123-frame";
-  form.hidden = true;
-  const fields = {
-    s: cfg.sParam || `123formbuilder-${cfg.id}`,
-    formIsSubmitted: "1",
-  };
-  Object.entries(controls).forEach(([key, controlName]) => {
-    if (controlName) fields[controlName] = payload[key] ?? "";
-  });
-  Object.entries(fields).forEach(([name, value]) => {
-    const input = document.createElement("input");
-    input.type = "hidden";
-    input.name = name;
-    input.value = String(value);
-    form.appendChild(input);
-  });
-  document.body.appendChild(form);
-  form.submit();
-  setTimeout(() => form.remove(), 2500);
+  if (!res.ok) throw new Error(`Lead submit ${res.status}`);
 }
 
 function renderUnlock() {
@@ -772,10 +744,9 @@ function renderUnlock() {
     btn.textContent = "Sending…";
     const payload = leadPayload();
     try {
-      await Promise.allSettled([
-        submitNetlify(payload),
-        Promise.resolve(submit123(payload)),
-      ]);
+      await submitLead(payload);
+    } catch (err) {
+      console.error(err);
     } finally {
       state.screen = "thanks";
       render({ scroll: true, animate: true });
@@ -789,7 +760,7 @@ function renderThanks() {
       <p class="quiz-kicker">Thank You</p>
       <h2>Your Medicare Prospect Search Is Complete</h2>
       <div class="gen-bar"><i></i></div>
-      <p>We’re preparing your Medicare Market Analysis.</p>
+      <p class="gen-label" id="thanks-status">We’re preparing your Medicare Market Analysis.</p>
       <ul class="recap-list" id="thanks-recap"></ul>
       <p>Our data team will review your criteria and determine the number of matching Medicare prospects available in your market. Your complimentary Market Analysis will be sent to the contact information provided.</p>
       <p>Have an urgent request? Call AmeriList at <a href="tel:18004572899">1.800.457.2899</a>.</p>
@@ -804,8 +775,21 @@ function renderThanks() {
     li.appendChild(document.createTextNode(value));
     list.appendChild(li);
   });
+  const markSent = () => {
+    const status = document.getElementById("thanks-status");
+    if (status) status.textContent = "Your information has been sent. You’ll receive your complimentary Market Analysis shortly.";
+  };
   if (canGsap()) {
-    gsap.fromTo(".gen-bar i", { width: "0%" }, { width: "90%", duration: 2.2, ease: "power2.inOut" });
+    gsap.fromTo(".gen-bar i", { width: "0%" }, {
+      width: "100%",
+      duration: 1.4,
+      ease: "power2.inOut",
+      onComplete: markSent,
+    });
+  } else {
+    const bar = wrap.querySelector(".gen-bar i");
+    if (bar) bar.style.width = "100%";
+    markSent();
   }
 }
 
