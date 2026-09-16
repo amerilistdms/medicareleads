@@ -842,6 +842,11 @@ a { color: inherit; }
   border-radius: 16px;
   padding: 16px;
 }
+.campaign-service-end {
+  grid-column: 1 / -1;
+  width: calc(50% - 5px);
+  justify-self: center;
+}
 .campaign-services h3 {
   margin: 0;
   font-size: 15px;
@@ -1188,6 +1193,7 @@ a { color: inherit; }
   .aud-tall { min-height: 280px; }
   .campaigns-visual img { min-height: 240px; height: 240px; }
   .campaigns-copy { padding: 28px 22px; }
+  .campaign-service-end { width: 100%; }
   .footer-bar, .footer-actions, .footer-legal {
     flex-direction: column;
     align-items: flex-start;
