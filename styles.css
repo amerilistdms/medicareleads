@@ -239,11 +239,7 @@ a { color: inherit; }
 
 .sample {
   padding: 64px 24px 96px;
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse 90% 80% at 50% 42%, rgba(0, 183, 195, 0.28) 0%, rgba(0, 183, 195, 0.08) 42%, transparent 72%),
-    linear-gradient(165deg, #f7fbfc 0%, #cfeff3 36%, #e7f6f8 64%, #f4f7f9 100%);
+  background: linear-gradient(180deg, #e7f2f4 0%, #f4f7f9 100%);
 }
 .sample-card {
   max-width: 560px;
@@ -834,10 +830,67 @@ a { color: inherit; }
   background: var(--bg);
   scroll-margin-top: 88px;
 }
-.faq-page .faq {
-  padding: 72px 24px 96px;
-  min-height: calc(100vh - 220px);
+.faq-hero {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  min-height: 280px;
+  background: var(--navy);
+  color: #fff;
+  overflow: hidden;
 }
+.faq-hero-copy {
+  padding: 56px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 640px;
+  margin-left: auto;
+  position: relative;
+  z-index: 1;
+}
+.faq-hero h1 {
+  font-size: clamp(40px, 5vw, 58px);
+  line-height: 1.08;
+  margin: 0;
+  letter-spacing: 0.01em;
+  font-weight: 700;
+}
+.faq-hero-photo {
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+}
+.faq-hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 28%;
+  min-height: 280px;
+  display: block;
+}
+.faq-hero-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--navy) 0%,
+    rgba(18, 52, 77, 0.88) 14%,
+    rgba(18, 52, 77, 0.45) 38%,
+    rgba(18, 52, 77, 0.12) 58%,
+    transparent 76%
+  );
+  pointer-events: none;
+}
+.faq-page .faq {
+  padding: 0 24px 96px;
+  margin-top: -40px;
+  position: relative;
+  z-index: 2;
+  min-height: 0;
+  background: transparent;
+}
+.faq-page { background: var(--bg); }
 .header-nav a[aria-current="page"] { color: var(--teal-dark); }
 .faq-list {
   max-width: 800px;
@@ -1056,7 +1109,11 @@ a { color: inherit; }
   .hero-copy { padding: 48px 24px; max-width: none; }
   .hero-photo { min-height: 280px; }
   .hero-photo img, .why-photo img { min-height: 280px; height: 280px; }
-  .hero-photo::after {
+  .faq-hero { grid-template-columns: 1fr; }
+  .faq-hero-copy { padding: 48px 24px; max-width: none; }
+  .faq-hero-photo { min-height: 200px; }
+  .faq-hero-photo img { min-height: 200px; height: 200px; }
+  .faq-hero-photo::after {
     background: linear-gradient(
       180deg,
       var(--navy) 0%,
@@ -1064,6 +1121,7 @@ a { color: inherit; }
       transparent 78%
     );
   }
+  .faq-page .faq { margin-top: -24px; }
   .audience-grid {
     grid-template-areas:
       "tall"
