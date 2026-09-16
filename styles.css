@@ -268,6 +268,18 @@ a { color: inherit; }
   line-height: 1.2;
 }
 .section-head p { margin: 0; color: var(--muted); font-size: 17px; }
+.audiences .section-head,
+.compare .section-head {
+  max-width: 1100px;
+}
+.audiences-title span {
+  display: block;
+  white-space: nowrap;
+}
+.compare .section-head h2,
+.compare .section-head p {
+  white-space: nowrap;
+}
 
 .sample {
   padding: 64px 24px 96px;
@@ -1196,6 +1208,11 @@ a { color: inherit; }
   .campaigns-visual img { min-height: 240px; height: 240px; }
   .campaigns-copy { padding: 28px 22px; }
   .campaign-service-end { width: 100%; }
+  .audiences-title span,
+  .compare .section-head h2,
+  .compare .section-head p {
+    white-space: normal;
+  }
   .footer-bar, .footer-actions, .footer-legal {
     flex-direction: column;
     align-items: flex-start;
