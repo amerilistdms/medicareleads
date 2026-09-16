@@ -844,30 +844,3 @@ document.addEventListener("keydown", (e) => {
 });
 
 render({ animate: true });
-
-function initHowReveal() {
-  const items = document.querySelectorAll(".how-steps li");
-  const line = document.querySelector(".how-line");
-  if (!items.length) return;
-  if (!canGsap() || typeof ScrollTrigger === "undefined") return;
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.set(items, { opacity: 0, y: 24 });
-  if (line) gsap.set(line, { scaleX: 0, transformOrigin: "left center" });
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: "#how",
-      start: "top 72%",
-      once: true,
-    },
-  });
-  if (line) tl.to(line, { scaleX: 1, duration: 0.7, ease: "power2.out" }, 0);
-  tl.to(items, {
-    opacity: 1,
-    y: 0,
-    duration: 0.4,
-    stagger: 0.12,
-    ease: "power2.out",
-  }, 0.12);
-}
-
-initHowReveal();
