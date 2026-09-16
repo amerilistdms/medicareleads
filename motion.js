@@ -64,6 +64,7 @@
         stagger: 0.07,
         ease: "power2.out",
         delay: 0.05,
+        clearProps: "transform",
       });
     }
 
@@ -74,6 +75,7 @@
         duration: 0.5,
         stagger: 0.08,
         ease: "power2.out",
+        clearProps: "transform",
       });
     }
 
