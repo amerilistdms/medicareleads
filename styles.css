@@ -1105,31 +1105,16 @@ a { color: inherit; }
   color: var(--muted);
   font-size: 16px;
 }
-.contact-form {
-  display: grid;
-  gap: 14px;
+.contact-123 {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
-.contact-form .field { margin-bottom: 0; }
-.contact-form textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-.contact-form .form-note {
-  margin: 0;
-  text-align: center;
-  font-size: 13px;
-  color: var(--muted);
-}
-.contact-form .form-note a,
-.contact-error a {
-  color: var(--teal-dark);
-  font-weight: 700;
-}
-.contact-thanks { text-align: center; }
-.contact-error {
-  margin: 16px 0 0;
-  color: #b42318;
-  font-size: 14px;
+.contact-123 iframe {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  border: 0;
 }
 
 .footer-bar > div:first-child { max-width: 560px; }
