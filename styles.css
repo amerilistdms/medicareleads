@@ -998,6 +998,9 @@ a { color: inherit; }
   font-weight: 700;
   overflow-wrap: break-word;
 }
+.faq-hero .lede {
+  margin: 16px 0 0;
+}
 .faq-hero-photo {
   position: relative;
   min-height: 280px;
@@ -1097,12 +1100,7 @@ a { color: inherit; }
   background: transparent;
   border: 0;
   box-shadow: none;
-  padding: 0 12px 8px;
-}
-.contact-lead {
-  margin: 0 12px 16px;
-  color: var(--muted);
-  font-size: 16px;
+  padding: 0;
 }
 .contact-123 {
   width: 100%;
