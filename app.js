@@ -345,7 +345,7 @@ function answerBtn({ key, label, selected, check, onClick }) {
   const b = document.createElement("button");
   b.type = "button";
   b.className = `answer quiz-enter${check ? " check" : ""}${selected ? " selected" : ""}`;
-  b.innerHTML = `<kbd>${key}</kbd><span><b>${label}</b></span><i></i>`;
+  b.innerHTML = `<kbd>${key}</kbd><span><b${label.includes("C-SNP") ? ' class="nowrap"' : ""}>${label}</b></span><i></i>`;
   b.addEventListener("click", () => onClick(b));
   return b;
 }

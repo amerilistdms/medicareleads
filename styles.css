@@ -33,6 +33,7 @@ main, section, footer, header {
   max-width: 100%;
 }
 body.nav-lock { overflow: hidden; }
+.nowrap { white-space: nowrap; }
 img { max-width: 100%; display: block; }
 button, input, textarea, select { font-family: inherit; }
 a { color: inherit; }
@@ -741,7 +742,8 @@ a { color: inherit; }
 .field input[type="email"],
 .field input[type="tel"],
 .field input[type="number"],
-.field textarea {
+.field textarea,
+.field select {
   width: 100%;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -1084,6 +1086,50 @@ a { color: inherit; }
   max-width: 800px;
   margin: 28px auto 0;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.contact-card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 32px 28px;
+}
+.contact-lead {
+  margin: 0 0 24px;
+  color: var(--muted);
+  font-size: 16px;
+}
+.contact-form {
+  display: grid;
+  gap: 14px;
+}
+.contact-form .field { margin-bottom: 0; }
+.contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+.contact-form .form-note {
+  margin: 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+.contact-form .form-note a,
+.contact-error a {
+  color: var(--teal-dark);
+  font-weight: 700;
+}
+.contact-thanks { text-align: center; }
+.contact-error {
+  margin: 16px 0 0;
+  color: #b42318;
+  font-size: 14px;
 }
 
 .footer-bar > div:first-child { max-width: 560px; }
@@ -1132,9 +1178,11 @@ a { color: inherit; }
 .footer-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 12px 20px;
   flex: none;
   align-self: center;
+  justify-content: flex-end;
 }
 .footer-phone {
   font-size: 16px;
@@ -1145,6 +1193,15 @@ a { color: inherit; }
 }
 .footer-phone:hover { color: var(--teal); }
 .site-footer .btn { margin: 0; }
+.site-footer .btn-ghost {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+.site-footer .btn-ghost:hover {
+  background: #fff;
+  color: var(--navy);
+}
 .footer-legal {
   max-width: 1120px;
   margin: 16px auto 0;
@@ -1461,6 +1518,7 @@ a { color: inherit; }
   .field input[type="tel"],
   .field input[type="number"],
   .field textarea,
+  .field select,
   .quiz-age input,
   .quiz-note-field,
   .quiz-text-field,
@@ -1479,6 +1537,7 @@ a { color: inherit; }
   .site-footer { padding: 28px 16px 20px; }
   .footer-bar { padding: 22px 18px; border-radius: 18px; }
   .faq-list details { padding: 0 16px; }
+  .contact-card { padding: 24px 18px; }
 }
 
 @media (max-width: 480px) {
@@ -1510,7 +1569,19 @@ a { color: inherit; }
 }
 .quiz-intro-head { margin-bottom: 36px; }
 .quiz-intro-head p { margin: 0 0 12px; }
-.quiz-intro-head .btn { margin-top: 8px; }
+.quiz-intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+.quiz-intro-actions .btn { margin-top: 0; }
+.quiz-contact-note {
+  margin-top: 14px !important;
+  font-size: 14px;
+  color: var(--muted);
+}
 .quiz-shell { max-width: 1100px; margin: 0 auto; scroll-margin-top: 88px; }
 .quiz-track {
   display: flex;
@@ -1717,6 +1788,7 @@ a { color: inherit; }
 }
 .answer span { min-width: 0; flex: 1; }
 .answer b { display: block; font-size: 16px; color: var(--navy); font-weight: 600; }
+.answer b.nowrap { white-space: nowrap; }
 .answer small { display: block; color: var(--muted); margin-top: 2px; font-size: 13px; }
 .answer i {
   width: 22px;
@@ -2021,6 +2093,7 @@ a { color: inherit; }
   .field input[type="tel"],
   .field input[type="number"],
   .field textarea,
+  .field select,
   .quiz-age input,
   .quiz-note-field,
   .quiz-text-field,
