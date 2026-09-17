@@ -1,24 +1,62 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
-html, body,
+html, body {
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-shadow: none !important;
+}
+
 #form,
+#form[style],
 #form > div[data-role="page"] {
   background: transparent !important;
   border: 0 !important;
   box-shadow: none !important;
   outline: none !important;
-  margin: 0 !important;
+  margin: 0 auto !important;
   padding: 0 !important;
-  min-height: 0 !important;
+  width: 100% !important;
   max-width: 100% !important;
+  min-width: 0 !important;
 }
 
 #form, #form label, #form input, #form textarea, #form select, #form button {
   font-family: Inter, "Segoe UI", sans-serif !important;
 }
 
+#form > div[data-role="page"] {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  column-gap: 12px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
 #form div[data-role="control"] {
-  margin-bottom: 14px !important;
+  box-sizing: border-box !important;
+  float: none !important;
+  margin: 0 0 14px !important;
+  padding: 0 !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  flex: 1 1 100% !important;
+}
+
+#form div[data-role="control"][style*="50"],
+#form div[data-role="control"][style*="49"],
+#form div[data-role="control"][style*="48"],
+#form div[data-role="control"][style*="6/12"],
+#form div[data-role="control"][style*="width: 50"] {
+  width: calc(50% - 6px) !important;
+  max-width: calc(50% - 6px) !important;
+  flex: 0 0 calc(50% - 6px) !important;
 }
 
 #form div[data-role="control"] label[data-role="label"],
@@ -88,10 +126,9 @@ html, body,
   box-sizing: border-box !important;
 }
 
-#form div[data-role="control"] > input[data-role="i123-input"]:not([type="radio"]):not([type="checkbox"]):not([type="hidden"]),
+#form div[data-role="control"] > input[data-role="i123-input"]:not([type="radio"]):not([type="checkbox"]):not([type="hidden"]):not([type="tel"]),
 #form div[data-role="control"] textarea[data-role="i123-input"],
-#form div[data-role="control"] input[type="email"],
-#form div[data-role="control"] input[type="tel"] {
+#form div[data-role="control"] input[type="email"] {
   display: block !important;
   width: 100% !important;
   max-width: 100% !important;
@@ -114,7 +151,27 @@ html, body,
 #form div[data-role="control"][data-type="email"] div[data-role="input-container"],
 #form div[data-role="control"][data-type="phone"] div[data-role="input-container"] {
   background: #ffffff !important;
+  background-color: #ffffff !important;
   border: 1px solid #e3eaf0 !important;
+}
+
+#form div[data-role="control"][data-type="phone"] input,
+#form div[data-role="control"][data-type="phone"] input[type="tel"],
+#form div[data-role="control"] input[type="tel"] {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border: 1px solid #e3eaf0 !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  padding: 12px 14px !important;
+  height: 46px !important;
+  min-height: 46px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  color: #1d3344 !important;
 }
 
 #form div[data-role="control"] textarea[data-role="i123-input"] {
@@ -158,13 +215,22 @@ div[data-ui-role="ui-element"][data-type="dropdown"] > div[data-role="dropdown-s
   margin: 0 0 8px !important;
 }
 
-#form div[data-role="control"][data-type="html-block"],
+#form div[data-role="control"][data-type="html-block"] {
+  width: 100% !important;
+  flex: 1 1 100% !important;
+  text-align: center !important;
+  font-size: 12px !important;
+  color: #5d7384 !important;
+  white-space: nowrap !important;
+}
+
 #form div[data-role="control"][data-type="html-block"] * {
-  font-size: 13px !important;
+  font-size: 12px !important;
   font-weight: 400 !important;
   color: #5d7384 !important;
   text-align: center !important;
-  line-height: 1.55 !important;
+  line-height: 1.45 !important;
+  white-space: nowrap !important;
 }
 
 #form a,
@@ -172,14 +238,18 @@ div[data-ui-role="ui-element"][data-type="dropdown"] > div[data-role="dropdown-s
   color: #00929c !important;
   font-weight: 700 !important;
   text-decoration: none !important;
+  white-space: nowrap !important;
+  display: inline !important;
 }
 
-#form button[data-role] {
+#form button[data-role],
+#form div[data-role="control"][data-type="submit"] {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   width: 100% !important;
   max-width: 100% !important;
+  flex: 1 1 100% !important;
   margin: 4px 0 8px !important;
   padding: 16px 26px !important;
   min-height: 52px !important;
@@ -205,6 +275,13 @@ div[data-ui-role="ui-element"][data-type="dropdown"] > div[data-role="dropdown-s
 }
 
 @media (max-width: 640px) {
+  #form div[data-role="control"],
+  #form div[data-role="control"][style*="50"],
+  #form div[data-role="control"][style*="49"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 100% !important;
+  }
   #form input, #form textarea, #form select {
     font-size: 16px !important;
   }

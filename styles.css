@@ -1092,17 +1092,16 @@ a { color: inherit; }
   gap: 12px;
 }
 .contact-card {
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 16px;
   box-shadow: var(--shadow);
-  padding: 28px 16px 16px;
-  overflow: hidden;
+  padding: 28px 24px 20px;
 }
 .contact-lead {
-  margin: 0 8px 4px;
+  margin: 0 0 8px;
   color: var(--muted);
   font-size: 16px;
   text-align: center;
@@ -1110,10 +1109,7 @@ a { color: inherit; }
 .contact-123 {
   width: 100%;
   max-width: 100%;
-  overflow: hidden;
   background: transparent;
-  display: flex;
-  justify-content: center;
 }
 .contact-123 iframe {
   display: block;
@@ -1125,7 +1121,6 @@ a { color: inherit; }
   border: 0 !important;
   outline: none;
   background: transparent !important;
-  box-shadow: none !important;
 }
 
 .footer-bar > div:first-child { max-width: 560px; }
@@ -1533,7 +1528,7 @@ a { color: inherit; }
   .site-footer { padding: 28px 16px 20px; }
   .footer-bar { padding: 22px 18px; border-radius: 18px; }
   .faq-list details { padding: 0 16px; }
-  .contact-card { padding: 24px 12px 12px; }
+  .contact-card { padding: 24px 16px 16px; }
 }
 
 @media (max-width: 480px) {
