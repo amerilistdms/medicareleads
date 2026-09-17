@@ -1,13 +1,6 @@
-/* Paste at the end of 123FormBuilder → Design → Custom CSS */
-html, body {
-  background: transparent !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  min-height: 0 !important;
-  height: auto !important;
-  overflow: hidden !important;
-  box-shadow: none !important;
-}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+html, body,
 #form,
 #form > div[data-role="page"] {
   background: transparent !important;
@@ -18,4 +11,201 @@ html, body {
   padding: 0 !important;
   min-height: 0 !important;
   max-width: 100% !important;
+}
+
+#form, #form label, #form input, #form textarea, #form select, #form button {
+  font-family: Inter, "Segoe UI", sans-serif !important;
+}
+
+#form div[data-role="control"] {
+  margin-bottom: 14px !important;
+}
+
+#form div[data-role="control"] label[data-role="label"],
+#form div[data-role="container"] label[data-role="label"] {
+  display: block !important;
+  text-align: left !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+  color: #12344d !important;
+  margin: 0 0 8px !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+#form .asterisk,
+#form .required {
+  color: #00b7c3 !important;
+}
+
+#form div[data-role="control"] div[data-role="i123-input"]:not([data-type="file"]),
+#form div[data-role="control"] div[data-role="input-container"] {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 46px !important;
+  height: 46px !important;
+  margin: 0 !important;
+  padding: 0 14px !important;
+  border: 1px solid #e3eaf0 !important;
+  border-radius: 8px !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+}
+
+#form div[data-role="control"][data-type="textarea"] div[data-role="i123-input"],
+#form div[data-role="control"][data-type="html-block"] div[data-role="i123-input"] {
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  display: block !important;
+}
+
+#form div[data-role="control"] div[data-role="i123-input"] input,
+#form div[data-role="control"] div[data-role="input-container"] input,
+#form div[data-role="control"] div[data-role="i123-input"] input[data-no-theme] {
+  display: block !important;
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  height: 44px !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  font-size: 15px !important;
+  color: #1d3344 !important;
+  box-sizing: border-box !important;
+}
+
+#form div[data-role="control"] > input[data-role="i123-input"]:not([type="radio"]):not([type="checkbox"]):not([type="hidden"]),
+#form div[data-role="control"] textarea[data-role="i123-input"],
+#form div[data-role="control"] input[type="email"],
+#form div[data-role="control"] input[type="tel"] {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 12px 14px !important;
+  min-height: 46px !important;
+  height: 46px !important;
+  border: 1px solid #e3eaf0 !important;
+  border-radius: 8px !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+  font-size: 15px !important;
+  color: #1d3344 !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+}
+
+#form div[data-role="control"][data-type="email"] div[data-role="i123-input"],
+#form div[data-role="control"][data-type="phone"] div[data-role="i123-input"],
+#form div[data-role="control"][data-type="email"] div[data-role="input-container"],
+#form div[data-role="control"][data-type="phone"] div[data-role="input-container"] {
+  background: #ffffff !important;
+  border: 1px solid #e3eaf0 !important;
+}
+
+#form div[data-role="control"] textarea[data-role="i123-input"] {
+  min-height: 120px !important;
+  height: 120px !important;
+  resize: vertical !important;
+}
+
+#form div[data-role="control"] input::placeholder,
+#form div[data-role="control"] textarea::placeholder {
+  color: #5d7384 !important;
+  opacity: 1 !important;
+}
+
+div[data-ui-role="ui-element"][data-type="dropdown"] > div[data-role="dropdown-skin"],
+#form div[data-role="control"][data-type="dropdown"] div[data-role="dropdown-skin"],
+#form div[data-role="control"][data-type="dropdown"] select,
+#form select[data-role="i123-input"] {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  min-height: 46px !important;
+  height: 46px !important;
+  padding: 12px 14px !important;
+  border: 1px solid #e3eaf0 !important;
+  border-radius: 8px !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+  color: #1d3344 !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  box-sizing: border-box !important;
+}
+
+#form div[data-role="control"] dt[data-role="instructions"] {
+  text-align: left !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: #5d7384 !important;
+  margin: 0 0 8px !important;
+}
+
+#form div[data-role="control"][data-type="html-block"],
+#form div[data-role="control"][data-type="html-block"] * {
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: #5d7384 !important;
+  text-align: center !important;
+  line-height: 1.55 !important;
+}
+
+#form a,
+#form div[data-role="control"][data-type="html-block"] a {
+  color: #00929c !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+}
+
+#form button[data-role] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 4px 0 8px !important;
+  padding: 16px 26px !important;
+  min-height: 52px !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  background: #00b7c3 !important;
+  color: #ffffff !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+}
+
+#form button[data-role]:hover {
+  background: #00929c !important;
+}
+
+#form [data-type="captcha"],
+#form [data-type="recaptcha"] {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  #form input, #form textarea, #form select {
+    font-size: 16px !important;
+  }
 }
