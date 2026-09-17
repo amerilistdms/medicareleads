@@ -1098,11 +1098,11 @@ a { color: inherit; }
   border: 1px solid var(--line);
   border-radius: 16px;
   box-shadow: var(--shadow);
-  padding: 32px 28px 24px;
+  padding: 28px 16px 16px;
   overflow: hidden;
 }
 .contact-lead {
-  margin: 0 0 8px;
+  margin: 0 8px 4px;
   color: var(--muted);
   font-size: 16px;
   text-align: center;
@@ -1112,12 +1112,15 @@ a { color: inherit; }
   max-width: 100%;
   overflow: hidden;
   background: transparent;
+  display: flex;
+  justify-content: center;
 }
 .contact-123 iframe {
   display: block;
   width: 100% !important;
+  min-width: 0 !important;
   max-width: 100% !important;
-  margin: 0;
+  margin: 0 auto !important;
   padding: 0;
   border: 0 !important;
   outline: none;
@@ -1530,7 +1533,7 @@ a { color: inherit; }
   .site-footer { padding: 28px 16px 20px; }
   .footer-bar { padding: 22px 18px; border-radius: 18px; }
   .faq-list details { padding: 0 16px; }
-  .contact-card { padding: 24px 18px 16px; }
+  .contact-card { padding: 24px 12px 12px; }
 }
 
 @media (max-width: 480px) {
