@@ -1449,7 +1449,8 @@ a { color: inherit; }
   }
   .faq-hero-photo img { min-height: 200px; height: 200px; }
   .faq-page .faq { margin-top: -24px; }
-  .blog-page:not(.article-page) .faq { margin-top: 0; }
+  .blog-page:not(.article-page) .faq,
+  .article-page .faq { margin-top: 0; }
   .why { gap: 28px; padding: 56px 20px; }
   .why-copy h2,
   .section-head h2,
@@ -2124,6 +2125,16 @@ a { color: inherit; }
   font-size: clamp(26px, 4.6vw, 42px);
   line-height: 1.12;
 }
+.article-page { background: #fff; }
+.article-page .faq {
+  margin-top: 0;
+  padding: 48px 24px 96px;
+  background: #fff;
+}
+.article-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
 .blog-wrap {
   max-width: 800px;
   margin: 0 auto;
@@ -2164,13 +2175,6 @@ a { color: inherit; }
   margin: 0 0 18px;
   font-size: 16px;
 }
-.article-card {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  padding: 36px 40px 40px;
-}
 .article-meta {
   color: var(--muted);
   font-size: 13px;
@@ -2181,23 +2185,6 @@ a { color: inherit; }
   color: var(--teal-dark);
   font-weight: 700;
   text-decoration: none;
-}
-.article-feature {
-  margin: 0 0 28px;
-  border-radius: 12px;
-  overflow: hidden;
-}
-.article-feature img {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  display: block;
-}
-.article-lede {
-  font-size: 18px;
-  color: var(--ink);
-  margin: 0 0 24px;
-  line-height: 1.55;
 }
 .article-toc {
   background: var(--bg);
@@ -2289,8 +2276,6 @@ a { color: inherit; }
 .article-faq { margin-top: 12px; }
 
 @media (max-width: 640px) {
-  .article-card { padding: 22px 16px 28px; }
-  .article-feature img { height: 200px; }
   .blog-card img { height: 180px; }
   .blog-card-body { padding: 20px 18px 18px; }
   .article-body h2 { font-size: 22px; }
