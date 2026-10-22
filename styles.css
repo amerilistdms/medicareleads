@@ -1449,6 +1449,7 @@ a { color: inherit; }
   }
   .faq-hero-photo img { min-height: 200px; height: 200px; }
   .faq-page .faq { margin-top: -24px; }
+  .blog-page:not(.article-page) .faq { margin-top: 0; }
   .why { gap: 28px; padding: 56px 20px; }
   .why-copy h2,
   .section-head h2,
@@ -2114,6 +2115,11 @@ a { color: inherit; }
 }
 
 .blog-page .faq-hero-copy { max-width: 720px; }
+.blog-page:not(.article-page) .faq {
+  margin-top: 0;
+  padding-top: 40px;
+  padding-bottom: 96px;
+}
 .article-page .faq-hero h1 {
   font-size: clamp(26px, 4.6vw, 42px);
   line-height: 1.12;
