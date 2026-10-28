@@ -861,6 +861,11 @@ a { color: inherit; }
   font-size: 15px;
   overflow-wrap: break-word;
 }
+.aud-photo a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 .aud-tint a {
   color: var(--teal-dark);
   font-weight: 700;
@@ -2138,6 +2143,9 @@ a { color: inherit; }
 .blog-wrap {
   max-width: 800px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 .blog-card {
   background: #fff;
