@@ -2245,6 +2245,23 @@ a { color: inherit; }
   text-decoration: none;
 }
 .article-body a:hover { text-decoration: underline; }
+mark {
+  background: #d7f6f8;
+  color: var(--navy);
+  padding: 0 0.18em;
+  border-radius: 3px;
+  font-weight: 700;
+}
+.hero mark,
+.faq-hero mark {
+  background: rgba(0, 183, 195, 0.32);
+  color: #fff;
+}
+.faq-list mark { color: var(--navy); }
+.blog-cta mark {
+  background: rgba(0, 183, 195, 0.28);
+  color: #fff;
+}
 .article-table-wrap {
   overflow-x: auto;
   margin: 0 0 20px;
