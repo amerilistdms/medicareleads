@@ -2252,11 +2252,6 @@ mark {
   border-radius: 3px;
   font-weight: 700;
 }
-.hero mark,
-.faq-hero mark {
-  background: rgba(0, 183, 195, 0.32);
-  color: #fff;
-}
 .faq-list mark { color: var(--navy); }
 .blog-cta mark {
   background: rgba(0, 183, 195, 0.28);
