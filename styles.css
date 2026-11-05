@@ -2245,6 +2245,28 @@ a { color: inherit; }
   text-decoration: none;
 }
 .article-body a:hover { text-decoration: underline; }
+.article-table-wrap {
+  overflow-x: auto;
+  margin: 0 0 20px;
+}
+.article-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.article-table th,
+.article-table td {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.article-table th {
+  background: var(--bg);
+  color: var(--navy);
+  font-weight: 700;
+}
+.article-table td { color: var(--ink); }
 .article-tip {
   border-left: 4px solid var(--teal);
   background: #f3fbfb;
